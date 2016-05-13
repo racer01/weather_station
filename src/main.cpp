@@ -96,7 +96,7 @@ void PaddedWrite(double in, byte decimals, byte row)
 	// clear row
 	for (byte i = 0; i < (sides[row][1] - sides[row][0]); i++)
 	{
-		lcd.setCursor(sides[row][0], row);
+		lcd.setCursor(sides[row][0] + i, row);
 		lcd.write(' ');
 	}
 	lcd.setCursor(PaddingReq(in, row) - dm - decimals, row);
