@@ -1,5 +1,5 @@
 #include <Arduino.h>
-// weather_station v0.0.1
+// weather_station v1.0.1
 // barometer+tempmeter+lcd=fun
 
 #include <Sodaq_BMP085.h>
