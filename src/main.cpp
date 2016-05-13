@@ -7,7 +7,7 @@
 #include <LiquidCrystal.h>
 #include <math.h>
 
-// MODEs: 0 - running avg, 1 - last CACHESIZE avg
+// MODEs: 0 - running avg, 1 - last CACHESIZE avg, 2 - raw data
 #define DEFMODE 1
 
 #define LCDWIDTH  16
@@ -140,6 +140,16 @@ void AdvancedStep()
 		data_pointer = 0;
 }
 
+void RawInit()
+{
+	SensorRead(&temp_avg, &atm_avg);
+}
+
+void RawStep()
+{
+	SensorRead(&temp_avg, &atm_avg);
+}
+
 void initialize(byte m)
 {
 	switch (m)
@@ -148,7 +158,7 @@ void initialize(byte m)
 			break;
 		case 1: AdvancedInit();
 			break;
-		case 3:
+		case 2: RawInit();
 			break;
 	}
 }
@@ -173,6 +183,9 @@ void loop()
 		case 1: AdvancedStep();
 				Average(&temp_avg, &atm_avg);
 			break;
+		case 2: RawStep();
+			break;
 	}
+
 	MeterWrite(temp_avg, atm_avg / 100.0, 1);
 }
