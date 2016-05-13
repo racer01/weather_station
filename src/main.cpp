@@ -44,11 +44,10 @@ void Average(float *temp, long *atm)
 	for (byte i = 0; i < CACHESIZE; i++)
 	{
 		*temp += temp_data[i];
-		*atm += atm_data[i] / 100;
+		*atm += atm_data[i];
 	}
 	*temp /= CACHESIZE;
 	*atm /= CACHESIZE;
-	*atm *= 100;
 }
 
 void SensorRead(float *temp, long *atm) // this must be 100 millisecond
@@ -177,5 +176,5 @@ void loop()
 				Average(&temp_avg, &atm_avg);
 			break;
 	}
-	MeterWrite(temp_avg, atm_avg / 100, 1);
+	MeterWrite(temp_avg, atm_avg / 100.0, 1);
 }
