@@ -30,14 +30,14 @@ byte mode = DEFMODE;
 
 
 float temp_avg;
-long atm_avg;
+unsigned long atm_avg;
 
 float temp_data[CACHESIZE];
-long atm_data[CACHESIZE];
+unsigned long atm_data[CACHESIZE];
 byte data_pointer = 0;
 
 
-void Average(float *temp, long *atm)
+void Average(float *temp, unsigned long *atm)
 {
 	*temp = 0;
 	*atm = 0;
@@ -50,7 +50,7 @@ void Average(float *temp, long *atm)
 	*atm /= CACHESIZE;
 }
 
-void SensorRead(float *temp, long *atm) // this must be 100 millisecond
+void SensorRead(float *temp, unsigned long *atm) // this must be 100 millisecond
 {
 	unsigned long previousMillis = millis();
 	*temp = sensor.readTemperature();
@@ -67,7 +67,7 @@ void SensorRead(float *temp, long *atm) // this must be 100 millisecond
 void FirstWrite()
 {
 	lcd.clear();
-	for (size_t i = 0; i < ROWCOUNT; i++)
+	for (byte i = 0; i < ROWCOUNT; i++)
 	{
 		lcd.setCursor(0, i);
 		lcd.print(prefix[i]);
@@ -117,7 +117,7 @@ void SimpleInit()
 void SimpleStep()
 {
 	float temp = 0;
-	long atm = 0;
+	unsigned long atm = 0;
 	SensorRead(&temp, &atm);
 	temp_avg = (temp_avg + temp) / 2;
 	atm_avg = (atm_avg + atm) / 2;
