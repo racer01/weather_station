@@ -126,9 +126,7 @@ void SimpleStep()
 void AdvancedInit()
 {
 	for (data_pointer = 0; data_pointer < CACHESIZE; data_pointer++)
-	{
 		SensorRead(&temp_data[data_pointer], &atm_data[data_pointer]);
-	}
 	data_pointer = 0;
 }
 
