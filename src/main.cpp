@@ -79,14 +79,14 @@ void FirstWrite()
 
 int PaddingReq(double in, byte row)
 {
-  if(in > 999 || in < -99)
-    return sides[row][1] - 4;
-  else if(in > 99 || in < -9)
-    return sides[row][1] - 3;
-  else if(in > 9 || in < 0)
-    return sides[row][1] - 2;
-  else // 0 < in < 10
-    return sides[row][1] - 1;
+	if(in > 999 || in < -99)
+		return sides[row][1] - 4;
+	else if(in > 99 || in < -9)
+		return sides[row][1] - 3;
+	else if(in > 9 || in < 0)
+		return sides[row][1] - 2;
+	else // 0 < in < 10
+		return sides[row][1] - 1;
 }
 
 void PaddedWrite(double in, byte decimals, byte row)
@@ -112,8 +112,6 @@ void MeterWrite(float temp, double pressure, double decimals)
 
 void SimpleInit()
 {
-	temp_avg = sensor.readTemperature();
-	atm_avg = sensor.readPressure(ALTITUDE);
 	SensorRead(&temp_avg, &atm_avg);
 }
 
@@ -152,6 +150,8 @@ void initialize(byte m)
 		case 0: SimpleInit();
 			break;
 		case 1: AdvancedInit();
+			break;
+		case 3:
 			break;
 	}
 }
